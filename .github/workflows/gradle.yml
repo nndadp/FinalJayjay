@@ -34,6 +34,7 @@ jobs:
 
       - name: Upload Web Test Report
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: web-report
           path: |
@@ -42,8 +43,16 @@ jobs:
 
       - name: Upload API Test Report
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: api-report
           path: |
             build/reports/api-cucumber.html
             build/reports/api-cucumber.json
+
+      - name: Upload Cucumber HTML Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cucumber-report
+          path: target/index.html
