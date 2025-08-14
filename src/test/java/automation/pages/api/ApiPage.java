@@ -85,13 +85,13 @@ public class ApiPage {
 
     public void userHasCreateRequestBody(){
 
-        int randomNumber = new Random().nextInt(100);
+        long timestamp = System.currentTimeMillis();
 
         newUser = new JSONObject();
         newUser.put("title", "mr");
         newUser.put("firstName", "Test");
         newUser.put("lastName", "Demo");
-        newUser.put("email", "TestDemo" +randomNumber+ "@dummy.com");
+        newUser.put("email", "TestDemo" +timestamp+ "@dummy.com");
     }
 
     public void userSendPOSTRequestToEndpoint(){
