@@ -20,39 +20,46 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Chrome
+      - name: 🖥️ Setup Chrome
         uses: browser-actions/setup-chrome@v1.7.3
 
-      - name: Grant execute permission for Gradle
+      - name: ✅ Grant execute permission for Gradle
         run: chmod +x gradlew
 
-      - name: Run Web Tests
+      # Jalankan Web Tests
+      - name: 🚀 Run Web Tests
         run: ./gradlew runWebTests -Dcucumber.filter.tags="@web"
 
-      - name: Run API Tests
+      # Jalankan API Tests
+      - name: 🚀 Run API Tests
         run: ./gradlew runApiTests -Dcucumber.filter.tags="@api"
 
-      - name: Upload Web Test Report
+      # Upload Web Test Report
+      - name: 📤 Upload Web Test Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: web-report
           path: |
-            build/reports/web-cucumber.html
-            build/reports/web-cucumber.json
+            reports/web_report.html
+            reports/web_report.json
 
-      - name: Upload API Test Report
+      # Upload API Test Report
+      - name: 📤 Upload API Test Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: api-report
           path: |
-            build/reports/api-cucumber.html
-            build/reports/api-cucumber.json
+            reports/api_report.html
+            reports/api_report.json
 
-      - name: Upload Cucumber HTML Report
+      # Upload Cucumber Report
+      - name: 📤 Upload Cucumber Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cucumber-report
-          path: target/index.html
+          path: |
+            reports/cucumber.html
+            reports/cucumber.json
